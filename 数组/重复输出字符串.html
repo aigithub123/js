@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   //功能需求：实现es6中的repeat函数
+   function repeat(str,repeatNum){
+       let newStr = '';
+       if(parseInt(repeatNum)<=1){
+          newStr = str;
+       }else{
+           for(let j =0;j<parseInt(repeatNum);j++){
+              newStr+=str;
+           }
+       }
+       return newStr;
+   }
+   console.log(repeat('abc',2.3));
+</script>
+</html>

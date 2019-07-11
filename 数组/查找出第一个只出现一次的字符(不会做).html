@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //功能需求：{
+    //  封装函数  查找出第一个只出现一次的字符
+    // }
+    /*
+       function unquie(str){
+        //do something
+        }
+      unquie("heaven");  	//"h"
+    */
+    //
+    function unquieStr(str){
+      //思路：如果一个字符串中一个字符只出现一次，那么她的的indexof和lastIndexOf()返回的
+      //的值必然是一样的，如果重复，则返回的值必然不同
+      for(let i  = 0 ;i<str.length;i++){
+          if(str.indexOf(str.charAt(i)) === str.lastIndexOf(str.charAt(i))){
+              //说明这个字符没有重复，一旦没有重复就返回这个字符
+              return str.charAt(i);
+          }
+      }
+    }
+</script>
+
+</html>

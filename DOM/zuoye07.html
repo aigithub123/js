@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>子节点逆序</title>
+    <meta name="keywords" content="关键词">
+    <meta name="description" content="描述">
+    <meta name="author" content="潭州教育-阿飞老师">
+    <style>
+        body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+        ol,ul,li{margin:0;padding:0;list-style:none;}
+        img{border:none;}
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul >
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            hello world
+            <li>5</li>
+            <!--document-->
+            <li>6</li>
+        </ul>
+    </div>
+
+    <script>
+        //封装一个函数，实现子节点逆序输出(利用已知元素appendChild复制粘贴 的属性)
+        let oUl = document.getElementById('wrap').getElementsByTagName('ul')[0];
+        function reserveChildNodes(dom){
+             for(let i = oUl.childNodes.length-2;i>=0;i--) {
+                 oUl.appendChild(oUl.childNodes[i])
+             }
+        }
+        reserveChildNodes(oUl);
+    </script>
+</body>
+</html>

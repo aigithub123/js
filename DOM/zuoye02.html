@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>children功能封装</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+        
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="ch">
+                <p>
+                    <span></span>
+                </p>
+            </div>
+            <div class="hc">
+                <p>
+                    <span></span>
+                </p>
+            </div>
+            <div class="htc">
+                <p>
+                    <span></span>
+                    <div class="apple"></div>
+                </p>
+            </div>
+        </div>
+        
+        <script>
+            //功能需求：封装一个函数，实现系统children属性
+            function myChildren(ele){
+                let children = [];
+                for(let i = 0;i<ele.childNodes.length;i++){
+                   if(ele.childNodes[i].nodeType === 1){
+                       children.push(ele.childNodes[i]);
+                   }
+                }
+                return children;
+            }
+
+        </script>
+    </body>
+</html>

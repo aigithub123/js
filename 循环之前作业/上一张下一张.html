@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" ondragstart="return false;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入过万不是梦</title>
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+       ul,ol,li{
+           list-style:none;
+       }
+       #wrap{
+           position:relative;
+           width:600px;
+           height:380px;
+           margin:50px auto;
+       }
+       #wrap .pics, #wrap .pics ul, #wrap .pics ul li, #wrap .pics ul li img{
+        width:100%;
+        height:100%;
+       }
+       #wrap .pics ul li {
+           display: none;
+           position:absolute;
+           left:0;
+           top:0;
+       }
+       #wrap .pics ul li.show{
+           display:block;
+       }
+       #wrap .pics ul li img{
+           user-select: none;
+       }
+       #wrap .header,#wrap .footer{
+           position:absolute;
+           left:0;
+           width:100%;
+           height:22px;
+           background:rgba(0,0,0,.5);
+           color:#fff;
+           text-align:center;
+           line-height:20px;
+       }
+       #wrap .header{
+           top:0;
+       }
+       #wrap .header span{
+           color:red;
+           font-weight:bold;
+       }
+       #wrap .footer{
+           bottom:0;
+       }
+       #wrap .arrow p {
+           position:absolute;
+           top:50%;
+           transform:translateY(-50%);
+           width:38px;
+           height:32px;
+           background-color:rgba(0,0,0,.5);
+           color:#fff;
+           text-align:center;
+           line-height:32px;
+           font-size:26px;
+           font-weight:bolder;
+           cursor:pointer;
+           user-select:none;
+       }
+       #wrap .arrow p.prev{
+           left:0;
+       }
+       #wrap .arrow p.next{
+           right:0;
+       }
+       #btn{
+           width:166px;
+           margin:auto;
+       }
+       #btn button{
+           width:80px;
+           height:40px;
+           cursor:pointer;
+       }
+       #btn button.active{
+           background:red;
+           color:#fff;
+       }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+      <div class="pics">
+          <ul>
+              <li class="show"><img src="./images/1.jpg" alt=""></li>
+              <li><img src="./images/2.jpg" alt=""></li>
+              <li><img src="./images/3.jpg" alt=""></li>
+              <li><img src="./images/4.jpg" alt=""></li>
+              <li><img src="./images/5.jpg" alt=""></li>
+          </ul>
+      </div>
+      <div class="header"><span>1</span>/5</div>
+      <div class="footer">植物</div>
+      <div class="arrow">
+          <p class="prev"><</p>
+          <p class="next">></p>
+      </div>
+    </div>
+    <div id="btn">
+        <button class="active">正常模式</button>
+        <button>循环模式</button>
+    </div>
+</body>
+<script>
+   let oBtn = document.getElementById("btn").getElementsByTagName("button"),
+       oArrow = document.getElementsByTagName("p"),
+       oFooter = document.getElementsByClassName("footer")[0],
+       oSpan = document.getElementsByTagName("span")[0],
+       oLi = document.querySelectorAll("#wrap .pics ul li"),
+       oActive = null,
+       currentPage = [1,2,3,4,5],
+       footerCon = ["植物","大战","植物大战","植物大战僵尸","植物大战僵尸中文版"],
+       index = 0;
+   //模式切换
+   oBtn[0].onclick = function(){
+       this.classList.add("active");
+       oBtn[1].classList.remove("active");
+   }
+   oBtn[1].onclick = function(){
+       this.classList.add("active");
+       oBtn[0].classList.remove("active");
+   }
+   //正常模式
+   //下一张
+   oArrow[1].onclick = function(){
+    oActive = document.querySelector("button.active");
+      index++;
+      if(oActive.innerHTML === "正常模式"){
+          
+        if(index >= 5){
+          index = 4;
+          alert("亲,这是最后一张图片了哦~");
+          return;
+        }
+      }else{
+          index%=5;
+      }
+      picSwitch(index);
+   }
+   //上一张
+   oArrow[0].onclick = function(){
+    oActive = document.querySelector("button.active");
+      index--;
+      if(oActive.innerHTML === "正常模式"){
+        if(index <= -1){
+          index = 0;
+          alert("亲,这是第一张图片了哦~");
+          return;
+        }
+      }else{
+          if(index <=-1){
+              index =4;
+          }
+      }
+      picSwitch(index);
+   }
+   function picSwitch(index){
+    for(let i = 0 ; i<oLi.length;i++){
+        oLi[i].classList.remove("show");
+      }
+      oLi[index].classList.add("show");
+      oSpan.innerHTML = currentPage[index];
+      oFooter.innerHTML = footerCon[index];
+   }
+</script>
+</html>

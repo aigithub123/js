@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入过万不是梦</title>
+    <style>
+      *{
+          margin:0;
+          padding:0;
+      }
+      p{
+          display:inline-block;
+          width:50px;
+          height:50px;
+          background-color:red;
+          margin:10px;
+      }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <button>生成10个div</button>
+        <div class="content"></div>
+    </div>
+    <script>
+      let oBtn = document.getElementsByTagName("button")[0];
+      let oCon = document.getElementsByClassName("content")[0];
+      let str = "";
+      let isFirstClicked = true;
+      oBtn.onclick = function(){
+          if(isFirstClicked){
+            for(let i = 0;i<10;i++){
+             str+="<p></p>"
+            }
+            isFirstClicked = false;
+          }else{
+              alert("亲，你已经点过一次了幼");
+          }
+          
+          oCon.innerHTML = str;
+      }
+    </script>
+</body>
+</html>

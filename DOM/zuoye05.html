@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>insertAfter</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+        
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <p>123</p>
+            <span>456</span>
+            <p>789</p>
+        </div>
+        
+        <script>
+            //功能需求：封装一个函数在dom2插入dom1(插到节点的后面就相当于插到下一兄弟节点的前面)
+            function insertAfter(dom1,dom2){
+                if(dom2.parentNode === null){
+                    throw Error("必须要有父节点");
+                }else{
+                    dom2.parentNode.insertBefore(dom1,dom2.nextSibling);
+                }
+            }
+            insertAfter(document.querySelectorAll('p')[1],document.querySelectorAll('p')[0]);
+        </script>
+    </body>
+</html>

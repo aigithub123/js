@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入上万不是梦</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+      功能需求，生成4位随机验证码
+      function 
+    */
+    function RandomVerifyCode(){
+        let str ='0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+        let newStr ='';
+        for(let i = 0;i<4;i++){
+           newStr+=str.charAt(Math.floor(Math.random()*str.length));
+        }
+        return newStr;
+    }
+    let res = RandomVerifyCode();
+    console.log(res);
+</script>
+</html>

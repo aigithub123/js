@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+   //功能需求：封装函数 获取浏览器url中的数据    要求：函数返回值是一个对象
+   /*
+      示例：function getUrl(){
+	//do something
+}
+var url = https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&tn=baidu&wd=海文&rsv_pq=becd1331000082fd&rsv_t=0f84&rqlang=cn&rsv_enter=1&rsv_sug3=14&rsv_sug1=12&rsv_sug7=100&rsv_sug2=0&rsp=0&inputT=9344&rsv_sug4=3518432
+getUrl(url)['wd'];  	//"海文"
+getUrl(url)['ie'];  	//"utf-8"
+   */
+   function getUrl(url) {
+      let obj = {};
+      //1.第一步，先找到问号所在的位置
+      let wenHaoPos = findWenhao(url);
+      //2.第二步，截取问号之后的字符串
+      let needStr = url.slice(wenHaoPos+1);
+      console.log('第一步',needStr);
+      //3.第三步，把&切掉
+      let arr = needStr.split('&');
+      console.log('第二步',arr);
+      for(let i = 0;i<arr.length;i++){
+         //第四步：把数组中的每一项的=再切掉，得到属性名和值：
+         let newArr = arr[i].split("=");
+         console.log('第三步',newArr);
+        for(let i = 0;i<newArr.length;i++){
+           //第五步：把数组中的第一项作为对象每一项的键名，数组中的第二项作为对象每一项的键值
+           obj[newArr[0]] =newArr[1];
+        }
+      }
+      console.log('第四步',obj);
+      //把生成好的对象返回出去
+      return obj;
+   }
+   function findWenhao(url) {
+         for (let i = 0; i < url.length; i++) {
+            if (url[i] === "?") {
+               return i;
+            }
+         }
+      }
+   var url = 'https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&tn=baidu&wd=海文&rsv_pq=becd1331000082fd&rsv_t=0f84&rqlang=cn&rsv_enter=1&rsv_sug3=14&rsv_sug1=12&rsv_sug7=100&rsv_sug2=0&rsp=0&inputT=9344&rsv_sug4=3518432'
+  getUrl(url)['ie'];
+</script>
+
+</html>

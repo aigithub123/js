@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好Js，月入上万不是梦</title>
+    <style>
+         *{
+             margin:0;
+             padding:0;
+             list-style: none;
+         }
+         #wrap{
+             width:400px;
+             margin:50px auto;
+             border:1px solid #ccc;
+         }
+         #wrap .header{
+             position:relative;
+             height:60px;
+             background-color:#eee;
+         }
+         #wrap .header .avatar img{
+             display:none;
+             position:absolute;
+             left:10px;
+             top:10px;
+             width:40px;
+             height:40px;
+             border-radius:50%;
+             cursor:pointer;
+         }
+         #wrap .header .avatar img.active{
+             display:block;
+         }
+         #wrap .header .txt{
+             display: none;
+             position:absolute;
+             top:15px;
+             left:66px;
+             width:256px;
+             height:30px;
+         }
+         #wrap .header .txt.show{
+             display:block;
+         }
+         #wrap .header .txt input{
+             float:left;
+             width:206px;
+             height:100%;
+         }
+         #wrap .header .txt button{
+             float:left;
+             width:45px;
+             height:34px;
+             cursor:pointer;
+         }
+         #wrap .add{
+             position:absolute;
+             right:28px;
+             top:15px;
+             width:30px;
+             height:30px;
+             border-radius:50%;
+             color:#fff;
+             text-align:center;
+             line-height:30px;
+             background-color:gray;
+             cursor:pointer;
+             user-select: none;
+         }
+         #wrap .content{
+             margin-top:50px;
+         }
+         #wrap .content li{
+             display:flex;
+             align-items: center;
+             height:80px;
+             border-bottom:1px solid red;
+         }
+         #wrap .content li img{
+             width:50px;
+             height:50px;
+             border-radius:50%;
+             margin-left:10px;
+         }
+         #wrap .content li span{
+             margin-left:20px;
+         }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+         <div class="header">
+             <div class="avatar">
+                 <img src="./img/01.jpg" class="active" alt="" />
+                 <img src="./img/02.jpg" alt="" />
+             </div>
+             <div class="txt">
+                 <input type="text" placeholder="请输入内容" />
+                 <button class="fabiao">发表</button>
+             </div>
+             <div class="add">+</div>
+         </div>
+         <ul class="content"></ul>
+    </div>
+</body>
+<script>
+    let oAdd = document.getElementsByClassName("add")[0],
+        oTxt = document.getElementsByClassName("txt")[0],
+        oInp = document.getElementsByTagName("input")[0],
+        oBtn = document.getElementsByClassName("fabiao")[0],
+        oContent = document.getElementsByTagName("ul")[0],
+        oImg = document.querySelectorAll(".avatar img");
+    let isShow = false;
+    oAdd.onclick = function(){
+        if(!isShow){
+           oTxt.classList.add("show");
+        }else{
+           oTxt.classList.remove("show");
+        }
+        isShow = !isShow; 
+    }
+    oImg[0].onclick = function(){
+        this.classList.remove("active");
+        oImg[1].classList.add("active")
+    }
+    oImg[1].onclick = function(){
+        this.classList.remove("active");
+        oImg[0].classList.add("active")
+    }
+    oBtn.onclick = function(){
+        let textVal = oInp.value;
+        let currentPicUrl = document.querySelector(".avatar img.active").getAttribute("src");
+        oContent.innerHTML+=`<li><img src="${currentPicUrl}" alt="" /><span>${textVal}</span></li>`;
+    }
+</script>
+</html>

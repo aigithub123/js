@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入过万不是梦</title>
+</head>
+<body>
+    
+</body>
+<script>
+   let str ='  heaven  heaven  h';
+   //trim():删除字符串两边的空格
+   //trimLeft():删除字符串左边的空格
+   //trimRight():删除字符串右边的空格
+   //现在我们来封装一个删除字符串所有的空格
+   String.prototype.deleteAllSpace = function(){
+       let newStr = '';
+       let arr = str.split('');
+       arr.forEach(item=>{
+           if(item!==' '){
+               newStr+=item;
+           }
+       });
+       return newStr;
+   }
+   console.log(str.deleteAllSpace());
+</script>
+</html>

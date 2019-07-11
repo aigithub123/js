@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+  //功能需求:写一个函数对传入的字符串中每个单词的首字母大写
+  /*
+    example:{
+        function myCap(str){
+         //do something
+    }
+    myCap('the quick brown fox'); // The Quick Brown Fox
+    }
+  */
+  function myCap(str){
+      let arr = str.split(' ');
+      for(let i = 0;i<arr.length;i++){
+          let newStr ='';
+          for(let j=0;j<arr[i].length;j++){
+             if(j==0){
+               newStr+=String.fromCharCode(arr[i].charCodeAt(0)-32);
+             }else{
+                 newStr+=arr[i][j];
+             }
+          }
+          newStr+=' ';
+       arr.splice(i,1,newStr);
+      }
+      return arr.join('');
+  }
+  console.log(myCap('zheng wen xiang'));
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+  //功能需求：实现数组的push方法
+  function myPush(oldArr){
+   for(let i = 1;i<arguments.length;i++){
+    oldArr.splice(oldArr.length,0,arguments[i]);
+   }
+   return oldArr.length;
+  }
+  
+</script>
+</html>

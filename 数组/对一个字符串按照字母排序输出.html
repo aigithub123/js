@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   //功能需求:写一个函数对传入的字符串重新按字母排序
+   /*
+      example:{
+          function reorderStr(str){
+         //do something
+    }
+    reorderStr('webmaster'); 	// abeemrstw
+      }
+   */
+   function reorderStr(str){
+    return str.split('').sort().join('')
+   }
+   console.log(reorderStr('zhengwenxiang'));
+</script>
+</html>

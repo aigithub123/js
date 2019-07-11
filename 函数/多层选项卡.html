@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入过万不是梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ol,
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        #wrap {
+            width: 480px;
+            height: 250px;
+            margin: 50px auto;
+        }
+
+        #wrap .slide ul li {
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            background-color: #000;
+            margin-bottom: 1px;
+            cursor: pointer;
+        }
+
+        #wrap .slide ul li.active {
+            background-color: #ffa500;
+        }
+
+        #wrap .content {
+            position: relative;
+            width: 400px;
+            height: 100%;
+        }
+
+        #wrap .content ul {
+            display:none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        #wrap .content ul.show{
+            display:block;
+        }
+        #wrap .content ul>li {
+            display:none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        #wrap .content ul>li.showw{
+            display:block;
+        }
+        #wrap .content ul>li img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #wrap .content .btn {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width:100%;
+            height: 30px;
+            background-color: rgba(0, 0, 0, .5);
+            z-index:2;
+        }
+        #wrap .content .btn .footer{
+            position:absolute;
+            height:100%;
+            right:0;
+        }
+        #wrap .content .footer li {
+            float: left;
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+        #wrap .content .footer li.active {
+            color: #fff;
+            background-color: #ffa500;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap" class="clearfix">
+        <div class="slide fl">
+            <ul>
+                <li class="active">车</li>
+                <li>美食</li>
+                <li>美女</li>
+            </ul>
+        </div>
+        <div class="content fl">
+            <ul class="car show">
+                <li class="showw"><img src='./images/1.jpg'></li>
+                <li><img src='./images/2.jpg'></li>
+                <li><img src='./images/3.jpg'></li>
+                <li><img src='./images/4.jpg'></li>
+                <div class="btn">
+                    <ol class="footer clearfix">
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                    </ol>
+                </div>
+               
+            </ul>
+            <ul class="food">
+                <li class="showw"><img src='./images/m1.jpg'></li>
+                <li><img src='./images/m2.jpg'></li>
+                <li><img src='./images/m3.jpg'></li>
+                <li><img src='./images/m4.jpg'></li>
+                <li><img src='./images/m5.jpg'></li>
+                <div class="btn">
+                    <ol class="footer">
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ol>
+                </div>
+            </ul>
+            <ul class="girl">
+                <li class="showw"><img src='./images/s1.jpg'></li>
+                <li><img src='./images/s2.jpg'></li>
+                <li><img src='./images/s3.jpg'></li>
+                <li><img src='./images/s4.jpg'></li>
+                <li><img src='./images/s5.jpg'></li>
+                 <div class="btn">
+                    <ol class="footer">
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ol>
+                 </div>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+  let oUl = document.querySelectorAll('#wrap .content ul'),
+      showUl = document.getElementById('wrap').getElementsByClassName("show")[0],
+      directLi = showUl.querySelectorAll('#wrap .content >ul >li'),
+      secondLi = showUl.querySelectorAll('#wrap .content >ul  ol li'),
+      slideLi = document.querySelectorAll('#wrap .slide ul li'),
+      slideLiLen = slideLi.length,
+      length = secondLi.length;
+      for(let i = 0;i<slideLiLen;i++){
+        slideLi[i].onclick = function(){
+              for(let j = 0;j<slideLiLen;j++){
+                slideLi[j].classList.remove('active'); 
+                oUl[j].classList.remove('show');
+              }
+              this.classList.add('active');
+              oUl[i].classList.add('show');
+              console.log(showUl);
+          }
+      }
+      for(let i = 0;i<length;i++){
+          secondLi[i].onclick = function(){
+            console.log(showUl);  
+              for(let j = 0;j<length;j++){
+                secondLi[j].classList.remove('active'); 
+                directLi[j].classList.remove('showw'); 
+              }
+              this.classList.add('active');
+              directLi[i].classList.add('showw'); 
+          }
+      }
+</script>
+</html>

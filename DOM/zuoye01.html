@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>返回元素的第n层祖先元素</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+        
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="box" id="ss">
+                <p >
+                    <span ></span>
+                </p>
+            </div>
+        </div>
+        
+        <script>
+            //功能需求：封装函数，返回元素的第n层祖先元素,一直找到html
+            function findNParent(ele,n) {
+                for(let i =0;i<n;i++){
+                    if(ele.parentNode!==null){
+                        ele = ele.parentNode;
+                    }else{
+                        return ele;
+                    }
+                }
+                return ele;
+            }
+
+            console.log(findNParent(ss,1));
+        </script>1
+    </body>
+</html>

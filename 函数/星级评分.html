@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入上万不是梦</title>
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+       ol,ul,li{
+           list-style: none;
+       }
+       #wrap{
+           width:420px;
+           height:100px;
+           margin:50px auto;
+           border:1px solid #ccc;
+       }
+       #wrap>div{
+           float:left;
+           margin-top:10px;
+       }
+       #wrap .title{
+           margin-left:12px;
+       }
+       #wrap .star{
+           margin-left:24px;
+       }
+       #wrap ul li{
+           float:left;
+           width:20px;
+           height:20px;
+           background:url(./images/star.png) no-repeat 0px 0px;
+           cursor:pointer;
+           margin-right:6px;
+       }
+       #wrap ul li.active{
+        background:url(./images/star.png) no-repeat 0px -28px;
+       }
+       #wrap .textPrompt{
+           float:right;
+           width:100px;
+           height:80px;
+           margin-right:8px;
+           border:1px solid #ccc;
+       }
+       .clearfix::after{
+           content:"";
+           display:block;
+           clear:both;
+       }
+    </style>
+</head>
+<body>
+    <div id="wrap"  class="clearfix">
+        <div class="title">星级评分</div>
+        <div class="star">
+           <ul class="clearfix">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+           </ul>
+        </div>
+        <div class="textPrompt">请添加评分</div>
+    </div>
+</body>
+<script>
+    let oUl = document.querySelector("#wrap ul "),
+        oLi = oUl.querySelectorAll("li"),
+        textPrompt = document.querySelector(".textPrompt");
+        len = oLi.length,
+        rating = ["很差","差","一般","推荐","力荐"],
+        clickedIndex = -1;
+        for(let i = 0;i<len;i++){
+            oLi[i].onmouseenter = function(){
+                //小于当前划到位置的高亮，大于当前位置的要取消高亮
+                for(let j = 0;j<=len;j++){
+                    if(j<=i){
+                        oLi[j].classList.add("active");
+                        textPrompt.innerHTML = rating[j];
+                    }else{
+                        oLi[j].classList.remove("active"); 
+                    }
+                    //点击事件
+                    oLi[j].onclick = function(){
+                    //只需把clickedIndex改变
+                     clickedIndex = j;
+                    }
+                }
+            }
+        }
+       oUl.onmouseleave =function(e){
+           //ul离开时把所有li的类名全部清除
+          for(let k = 0;k<len;k++){
+              //如果用户没有点击
+              if(clickedIndex<0){
+                oLi[k].classList.remove("active");
+                textPrompt.innerHTML = '请添加评分';
+              }else{
+                  //如果用户点击了,离开时保留指定星星位置高亮数
+                  for(let m = 0;m<=clickedIndex;m++){
+                    oLi[m].classList.add("active");
+                  }
+                  textPrompt.innerHTML = rating[m];
+              }
+              
+          }
+       }
+</script>
+</html>

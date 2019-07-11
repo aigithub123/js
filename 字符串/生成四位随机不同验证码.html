@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+      功能需求，生成4位随机验证码，且每位验证码不相同
+      function 
+    */
+    function RandomVerifyUniqueCode(){
+        let str ='0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+        let newStr ='';
+        for(let i = 0;i<4;i++){
+            if(newStr.indexOf(str.charAt(Math.floor(Math.random()*str.length)))===-1){
+               console.log(1)
+                newStr+=str.charAt(Math.floor(Math.random()*str.length));
+            }else{
+                //如果之前已经重复则跳过此次循环，进入下次循环，同时i要减1
+                i--;
+                continue;
+            }
+        }
+        return newStr;
+    }
+    let res = RandomVerifyUniqueCode();
+    console.log(res);
+</script>
+</html>

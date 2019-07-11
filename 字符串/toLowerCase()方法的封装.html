@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入过万不是梦</title>
+</head>
+<body>
+    
+</body>
+<script>
+   /*
+      用原生js封装toLowerCase():
+
+   */
+   let str = 'heave郑文祥RFv';
+   String.prototype.myLowerCase = function(){
+       let newStr ='';
+     for(let i = 0 ;i<str.length;i++){
+         //如果字符串里有大写的字母就转为小写，没有就不转
+         if(str.charCodeAt(i)>=65&&str.charCodeAt(i)<=90){
+             //就说明是大写字符，是小写字符我们就转为小写
+            newStr+=String.fromCharCode(str.charCodeAt(i)+32);
+         }else{
+             //如果不是大写字符就原样输出
+             newStr+=str.charAt(i);
+         }
+     }  
+     return newStr; 
+   }
+   console.log(str.myLowerCase());
+</script>
+</html>

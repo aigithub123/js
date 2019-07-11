@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入上万不是梦</title>
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+       ul,ol,li{
+           list-style:none;
+       }
+       #wrap{
+          width:200px;
+          margin:50px auto; 
+          border:1px solid #000;
+       }
+       #wrap ul{
+           height:36px;
+           overflow:hidden;
+       }
+       #wrap ul.show{
+           height:auto;
+       }
+       #wrap ul li{
+           height:28px;
+           line-height:28px;
+           text-indent:10px;
+           border-bottom:1px dashed #000;
+       }
+       #wrap ul li:hover{
+           color:#fff;
+           background-color:purple;
+       }
+       #wrap ul li.title{
+           height:36px;
+           line-height:36px;
+           font-size:20px;
+           color:#fff;
+           background-color:#9900cc;
+           border-bottom:2px solid  #000;
+           box-sizing:border-box;
+       }
+       #wrap ul li:last-child{
+           border:none;
+       }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+           <li class="title">同事</li> 
+           <li>千寻</li>
+           <li>千凡</li>
+           <li>阿飞</li>
+           <li>追梦</li>
+        </ul>
+        <ul>
+           <li class="title">好友</li> 
+           <li>梅梅</li>
+           <li>甜甜</li>
+           <li>波波</li>
+        </ul>
+        <ul>
+            <li class="title" style="border:none;">基友</li> 
+            <li>一米阳光</li>
+            <li>小风车</li>
+            <li>小米</li>
+        </ul>
+    </div>
+</body>
+<script>
+   let oUl = document.querySelectorAll("ul");
+   let oTitle = document.getElementsByClassName("title");
+   for(let i = 0;i<oUl.length;i++){
+       oTitle[i].onclick = function(){
+           for(let j = 0;j<oUl.length;j++){
+               oUl[j].classList.remove("show");
+           }
+           oUl[i].classList.add("show");
+       }
+   }
+</script>
+</html>

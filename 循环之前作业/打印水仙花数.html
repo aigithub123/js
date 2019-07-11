@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入上万不是梦</title>
+    <style>
+         *{
+             margin:0;
+             padding:0;
+         }
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    //算出所有的水仙花数
+   function ShuiXianHua(){ 
+       let shuixianhua = [];
+       for(let i=100;i<1000;i++){
+          //得到这个数的每一位
+          //即百位为iFirst,十位为iSecond,个位为iThird
+          let iFirst = parseInt(i/100);
+          let iSecond = parseInt(i/10%10);
+          let iThird = parseInt(i%10);
+          if(i === (Math.pow(iFirst,3)+Math.pow(iSecond,3)+Math.pow(iThird,3))){
+            shuixianhua.push( i );
+          }
+       }
+       return shuixianhua;
+   }
+   document.write("所有的水仙花数是:"+ShuiXianHua());
+</script>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入过万不是梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,ol,li {
+            list-style: none;
+        }
+
+        .fl {
+            float: left;
+        }
+        .fr{
+            float:right;
+        }
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .red {
+            color: red;
+            font-weight: bolder;
+        }
+        #wrap {
+            width: 800px;
+            margin: 50px auto;
+        }
+
+        #wrap .title {
+            height: 45px;
+            background-color: #efefef;
+        }
+
+        #wrap .title ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        #wrap .title ul li {
+            position: relative;
+            right: -28px;
+            font-weight: bolder;
+        }
+
+        #wrap .content {
+            width: 100%;
+        }
+
+        #wrap .content li {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            border-bottom: 1px solid #ccc;
+        }
+        #wrap .content li:nth-child(1) img, #wrap .content li:nth-child(4) img{
+            width: 120px;
+            height: 120px;
+        }
+        #wrap .content li:nth-child(2) img, #wrap .content li:nth-child(3) img{
+            width: 120px;
+            height: 90px;
+        }
+        #wrap .content li .num button {
+            width: 40px;
+            height: 32px;
+            cursor:pointer;
+        }
+
+        #wrap .content li .num .count {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            outline: none;
+            margin: -3px 6px -3px 6px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="title">
+            <ul>
+                <li>商品</li>
+                <li>单价</li>
+                <li>数量</li>
+                <li>小计</li>
+            </ul>
+        </div>
+        <ul class="content"></ul>
+        <div class="footer fr">
+            <div >已选<span style="padding:5px; color:red;font-size: 20px; font-weight:bolder;" class="goodsCount">0</span>个</div>
+            <div>共计<span  style="padding:5px;color:red;font-size: 20px; font-weight:bolder;" class="totalPrice">0</span>元</div>
+        </div>
+    </div>
+    <script src="./shopData.js"></script>
+    <script>
+        init();
+        let oPrice = document.querySelectorAll(".price"),
+            oReduce =  document.querySelectorAll(".reduce"),
+            oAdd =  document.querySelectorAll(".add"),
+            oCount = document.querySelectorAll(".count"),
+            oSubtotal = document.querySelectorAll(".Subtotal"),
+            oGoodCount = document.getElementsByClassName("goodsCount")[0],
+            oTotalPrice = document.getElementsByClassName("totalPrice")[0],
+            length = oAdd.length;
+            for(let i = 0;i<length;i++){
+                oAdd[i].onclick = function(){
+                    let totalCount = 0,totalPrice = 0;
+                    oCount[i].innerHTML =Number( oCount[i].innerHTML) +1;
+                    oSubtotal[i].innerHTML = oPrice[i].innerHTML*oCount[i].innerHTML;
+                    for(let j = 0;j<length;j++){
+                        totalCount+=Number(oCount[j].innerHTML );
+                        totalPrice+=Number(oSubtotal[j].innerHTML);
+                        oGoodCount.innerHTML = totalCount;
+                        oTotalPrice.innerHTML = totalPrice;
+                    }
+                }
+                oReduce[i].onclick = function(){
+                    let totalCount = 0,totalPrice = 0;
+                    oCount[i].innerHTML = (Number( oCount[i].innerHTML) -1)<=0?0:(Number( oCount[i].innerHTML) -1);
+                    oSubtotal[i].innerHTML = oPrice[i].innerHTML*oCount[i].innerHTML;
+                    for(let j = 0;j<length;j++){
+                        totalCount+=Number(oCount[j].innerHTML );
+                        totalPrice+=Number(oSubtotal[j].innerHTML);
+                        oGoodCount.innerHTML = totalCount;
+                        oTotalPrice.innerHTML = totalPrice;
+                    }
+                }
+            }
+        function init(){
+        let oContent = document.getElementsByClassName("content")[0];
+        let html = "";
+        data.forEach((item) => {
+            html += `
+              <li>
+                 <img src="${item.shopPic}" alt=""/>
+                 <p class="price red">${item.price}</p>
+                 <div class="num clearfix">
+                     <button class="reduce fl">-</button>
+                     <div class="count fl" contenteditable="true">0</div>
+                     <button class="add fl">+</button>
+                 </div>
+                 <p class="Subtotal red">0</p>
+              </li>
+          `
+        })
+        oContent.innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

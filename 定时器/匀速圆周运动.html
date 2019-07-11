@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+            #wrap{
+                position:relative;
+                width:500px;
+                height:500px;
+                margin:50px auto;
+                border:1px solid green;
+                border-radius:50%;
+            }
+            #wrap .box{
+                position:absolute;
+                left:245px;
+                top:-5px;
+                width:10px;
+                height:10px;
+                background-color:red;
+                border-radius:50%;
+                cursor: pointer;
+            }
+            .option{
+                width:100px;
+                height:21px;
+                margin:10px auto;
+            }
+        </style>
+    </head>
+    <body>
+         <div class="option">
+             <button id="run">run</button>
+             <button id="stop">stop</button>
+         </div>
+        <div id="wrap">
+            <div class="box"></div>
+        </div>
+        
+        <script>
+            (function () {
+                let oBox = document.getElementsByClassName('box')[0],
+                    run = document.getElementById('run'),
+                    stop = document.getElementById('stop'),
+                    timer = null,
+                    R = 250,
+                    deg = 90,
+                    initX = oBox.offsetLeft,
+                    initY = oBox.offsetTop;
+                move();
+                function move(){
+                  timer = setInterval(()=>{
+                      deg+=0.01;
+                      oBox.style.left = initX+R*Math.sin(deg-90)+'px';
+                      oBox.style.top = initY+R*(1-Math.cos(deg-90))+'px';
+                  },1000/60)
+                }
+                run.addEventListener('click',()=>{
+                    move();
+                },false);
+                stop.addEventListener('click',()=>{
+                   clearInterval( timer );
+                },false);
+            })();
+        </script>
+    </body>
+</html>

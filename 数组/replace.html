@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   //功能需求：封装函数  用指定字符串替换字符串的
+   function replaceStr(str,origin,target){
+       let arr = str.split(' ');
+       for(let i = 0;i<arr.length;i++){
+           if(arr[i] === origin){
+               //找到原来字符的位置，并替换
+               arr.splice(i,1,target); 
+           }
+       }
+       return arr.join(' ');
+   }
+   replaceStr('i am heaven','heaven','wula');
+</script>
+</html>

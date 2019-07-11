@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>当前时间</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+            #wrap{
+                width:540px;
+                height:100px;
+                margin:50px auto;
+                border:1px solid #ccc;
+            }
+            #wrap .content{
+                padding:20px;
+            }
+            #wrap .content .now{
+                font-size:22px;
+            }
+            #wrap .content .time{
+                font-size:30px;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+           <div class="content">
+               <div class="now">现在是:</div>
+               <div class="time">2019年07月11日星期四:10时55分59秒</div>
+           </div>
+        </div>
+        
+        <script>
+            let oTime = document.getElementsByClassName('time')[0];
+            const week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+            currentTime();
+            function currentTime(){
+                let year,month,days,day,hour,minutes,seconds;
+                let date = new Date();
+                year = date.getFullYear();
+                month = (date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1);
+                days = (date.getDate())<10?'0'+(date.getDate()):(date.getDate());
+                day = week[date.getDay()];
+                hour = (date.getHours())<10?'0'+(date.getHours()):(date.getHours());
+                minutes = (date.getMinutes())<10?'0'+(date.getMinutes()):(date.getMinutes());
+                seconds = (date.getSeconds())<10?'0'+(date.getSeconds()):(date.getSeconds());
+                oTime.innerHTML =  year+'年'+month+'月'+days+'日'+day+hour+'时'+minutes+'分'+seconds+'秒';
+            }
+             setInterval(currentTime,1000)
+
+        </script>
+    </body>
+</html>

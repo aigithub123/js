@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+             img{border:none;}
+             #wrap{
+                 position:absolute;
+                 left:10px;
+                 top:20px;
+                 width:600px;
+                 height:600px;
+                 background-color:pink;
+             }
+            #wrap .box{
+                position:absolute;
+                left:66px;
+                top:88px;
+                width:400px;
+                height:400px;
+                background-color:green;
+            }
+            #wrap .box p {
+                position:absolute;
+                left:66px;
+                top:88px;
+                width:200px;
+                height:200px;
+                background-color:blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="box">
+                <p></p>
+            </div>
+        </div>
+        
+        <script>
+            //功能需求：封装一个函数，获取页面中任意元素到文档的距离
+            function  getElePos(obj){
+                let top = 0,left = 0;
+                while(obj!==document.body){
+                    top+=obj.offsetTop;
+                    left+=obj.offsetLeft;
+                    obj = obj.parentNode;
+                }
+                return {left,top}
+            }
+
+            console.log(getElePos(document.querySelector('#wrap')))//{left:10,top:20}
+            console.log(getElePos(document.querySelector('.box')));//{left:76,top:108}
+            console.log(getElePos(document.querySelector('p')));//{left:142,top:196}
+        </script>
+    </body>
+</html>

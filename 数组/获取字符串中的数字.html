@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   //功能需求： 封装函数  获取字符串中的数字，并按照数组输出
+   function getNumFromStr(str){
+       let newStr = '';
+       let hasNum = false;
+     for(let i = 0;i<str.length;i++){
+        if(!isNaN(Number(str[i]))){
+            //说明是数字
+            newStr+=str[i];
+            hasNum = true;
+        }else{
+            if(hasNum){
+                newStr+='/'
+            }
+            hasNum = false;
+        }
+     }
+      return newStr.split("/").map((item=>{
+          return Number(item)
+      }))
+   }
+
+   getNumFromStr('shdkfh1234cxj5665sdkj2121');
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+  //封装函数 检查字符串结尾 
+/*
+  function  confirmEnding(str,target){
+        //do something
+    }
+    confirmEnding("He has to give me a new name", "me")  	//true
+    confirmEnding("He has to give me a new name", "na")  	//false
+
+*/
+function confirmEnding(str,target){
+   if(target.indexOf(str[str.length-1])!==-1){
+       return true;
+   }else{
+       return false;
+   }
+}
+console.log(confirmEnding("He has to give me a new name", "me"))
+</script>
+</html>

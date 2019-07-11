@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+            #wrap .option{
+                width:100px;
+                height:25px;
+                margin:20px auto;
+            }
+            #wrap .content{
+                border:1px solid #ccc;
+            }
+            #wrap .content p{
+                display:inline-block;
+                width:160px;
+                height:40px;
+                text-align:center;
+                line-height:40px;
+                overflow:hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="option">
+                <button id="run">run</button>
+                <button id="stop">stop</button>
+            </div>
+            <div class="content"></div>
+        </div>
+        
+        <script>
+            (function(){
+                let oRun = document.getElementById('run'),
+                    oStop = document.getElementById('stop'),
+                    con = document.getElementsByClassName('content')[0],
+                    timer = null;
+
+                function getColor(){
+                    let r = Math.floor(Math.random()*256),
+                        g = Math.floor(Math.random()*256),
+                        b = Math.floor(Math.random()*256),
+                        a = Math.random().toFixed(3);
+                    return 'rgba('+r+','+g+','+b+','+a+')';
+                }
+                run();
+                function run(){
+                    timer = setInterval(()=>{
+                        con.innerHTML+='<p style="background:'+getColor()+';color:'+getColor()+' ">'+getColor()+'</p>';
+                    },1000);
+                }
+                function stop(){
+                    clearInterval(timer);
+                }
+                oRun.addEventListener('click',run,false);
+                oStop.addEventListener('click',stop,false);
+            })();
+        </script>
+    </body>
+</html>

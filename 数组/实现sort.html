@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //功能需求：实现数组排序（参考冒泡排序）
+    /*
+      example:{
+          function  mySort(num){
+    //do something
+}
+mySort([2,33,41,10,5])		//[2,5,10,33,41]
+      }
+    */
+    function mySort(arr) {
+      for(let i = 0;i<arr.length;i++){
+          for(j=0;j<arr.length-i;j++){
+             if(arr[j]>arr[j+1]){
+                //交换位置
+                let temp = arr[j]; 
+                arr[j]= arr[j+1];
+                arr[j+1] = temp;
+             }    
+          }
+      }
+      return arr;
+    }
+    console.log(mySort([2,33,41,10,5]));
+    /*
+       1：2,33,41,10,5--》2，33，10，5，41
+       2：
+    */
+</script>
+
+</html>

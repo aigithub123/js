@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>世界时</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+            #wrap{
+                width:540px;
+                height:360px;
+                margin:50px auto;
+                border:1px solid #ccc;
+            }
+            #wrap .content{
+                width:500px;
+                margin:20px auto 0 ;
+            }
+            #wrap .content li {
+                width:500px;
+                height:78px;
+                border-bottom:1px solid #ccc;
+            }
+            #wrap .content li .now{
+                font-size:22px;
+                margin-top:4px;
+            }
+            #wrap .content li .time{
+                font-size:30px;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <ul class="content">
+                <li>
+                    <div class="now">东京时间:</div>
+                    <div class="time"></div>
+                </li>
+                <li>
+                    <div class="now">北京时间:</div>
+                    <div class="time"></div>
+                </li>
+                <li>
+                    <div class="now">伦敦时间:</div>
+                    <div class="time"></div>
+                </li>
+                <li>
+                    <div class="now">纽约时间:</div>
+                    <div class="time"></div>
+                </li>
+            </ul>
+        </div>
+        
+        <script>
+            let oTime = document.querySelectorAll('.time');
+            const week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+            //各地区时间
+            function Area(num){
+                worldTime(num);
+                setInterval(function(){
+                   worldTime(num)
+                },1000)
+            }
+            //封装函数，计算指定时区的日期
+              function worldTime(timezone){
+                  let year,month,days,day,hour,minutes,seconds;
+                  //计算0时区的时间
+                  timezone = 8-timezone;
+                  let date = new Date();
+                  let currentTime = date.getTime()+timezone*(date.getTimezoneOffset()/8)*60*1000;
+                  date = new Date(currentTime);
+                  year = date.getFullYear();
+                  month = (date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1);
+                  days = (date.getDate())<10?'0'+(date.getDate()):(date.getDate());
+                  day = week[date.getDay()];
+                  hour = (date.getHours())<10?'0'+(date.getHours()):(date.getHours());
+                  minutes = (date.getMinutes())<10?'0'+(date.getMinutes()):(date.getMinutes());
+                  seconds = (date.getSeconds())<10?'0'+(date.getSeconds()):(date.getSeconds());
+                  switch(timezone){
+                      case -1:oTime[0].innerHTML =  year+'年'+month+'月'+days+'日'+day+hour+'时'+minutes+'分'+seconds+'秒';break;
+                      case 0:oTime[1].innerHTML =  year+'年'+month+'月'+days+'日'+day+hour+'时'+minutes+'分'+seconds+'秒';break;
+                      case 8:oTime[2].innerHTML =  year+'年'+month+'月'+days+'日'+day+hour+'时'+minutes+'分'+seconds+'秒';break;
+                      case 13:oTime[3].innerHTML =  year+'年'+month+'月'+days+'日'+day+hour+'时'+minutes+'分'+seconds+'秒';break;
+                      default:break;
+                  }
+
+              }
+               for(let i = 0;i<oTime.length;i++){
+                  switch(i){
+                      case 0:Area(9);break;
+                      case 1:Area(8);break;
+                      case 2:Area(0);break;
+                      case 3:Area(-5);break;
+                      default:break;
+                  }
+               }
+        </script>
+    </body>
+</html>

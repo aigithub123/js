@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>isSomeOneChildren</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+        
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            rrr
+            <p></p>
+            <span></span>
+        </div>
+        <i></i>
+        <script>
+            //判断一个元素是不是另个元素的子元素
+              function isSomeOneChildren(parent,children){
+                if(children.nodeType!==1){
+                    throw Error('传入的子元素必须是元素节点');
+                }else{
+                 for(let i = 0;i<parent.childNodes.length;i++){
+                     if(children === parent.childNodes[i]){
+                         return true;
+                     }
+                 }
+                  return false;
+                }
+              }
+
+            console.log(isSomeOneChildren(wrap,document.querySelector('i')));
+        </script>
+    </body>
+</html>

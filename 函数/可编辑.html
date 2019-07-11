@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js,月入上万不是梦</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ol,ul,li{
+            list-style: none;
+        }
+        #wrapper{
+            width:650px;
+            height:250px;
+            margin:50px auto;
+            border:1px solid #ccc;
+        }
+        #wrapper ul{
+            width:600px;
+            height:200px;
+            margin:25px auto;
+        }
+        #wrapper ul li{
+            height:65px;
+            line-height:65px;
+            border-bottom:1px solid #eee;
+        }
+        #wrapper ul li button{
+            width:50px;
+            height:35px;
+            margin-top: 15px;
+            cursor:pointer;
+        }
+        #wrapper ul li button.change{
+            background-color:#000;
+            color:#fff;
+        }
+        .fl{
+            float:left;
+        }
+        .fr{
+            float:right;
+        }
+        .clearfix::after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <ul>
+            <li class="clearfix">
+                <p class="fl">hello</p>
+                <button class="fr">修改</button>
+            </li>
+            <li class="clearfix">
+                <p class="fl">hello</p>
+                <button class="fr">修改</button>
+            </li>
+            <li class="clearfix">
+                <p class="fl">hello</p>
+                <button class="fr">修改</button>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    let aP = document.getElementsByTagName("p"),
+        aBtn = document.querySelectorAll("button"),
+        length = aBtn.length;
+    for(let i = 0 ;i<length;i++){
+        aBtn[i].isClicked = false;
+        aBtn[i].onclick = function(){
+            if(!this.isClicked){
+               this.classList.add("change")
+               this.innerHTML = "确定";
+               aP[i].setAttribute("contenteditable",true)
+            }else{
+                this.classList.remove("change");
+                this.innerHTML = "修改";
+                aP[i].setAttribute("contenteditable",false)
+            }
+            this.isClicked = !this.isClicked;
+        }
+    }
+   
+</script>
+</html>

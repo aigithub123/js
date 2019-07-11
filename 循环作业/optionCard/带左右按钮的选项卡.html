@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" ondragstart="return false;" onselectstart="return false;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入上万不是梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+        }
+
+        #wrapper {
+            position: relative;
+            width: 784px;
+            height: 364px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+
+        #img {
+            width: 100%;
+            height: 324px;
+        }
+
+        #img ul {
+            position: absolute;
+            left: -784px;
+            top: 0;
+            width: 1000%;
+            height: 100%;
+        }
+
+        #img ul li {
+            float: left;
+        }
+
+        #img img {
+            width: 784px;
+            height: 324px;
+            user-select: none;
+        }
+
+        #btn,
+        #btn ol {
+            width: 100%;
+            height: 40px;
+        }
+
+        #btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        #btn ol li {
+            float: left;
+            width: 20%;
+            height: 100%;
+            text-align: center;
+            line-height: 40px;
+            background-color: #e2e2e2;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        #btn ol li.active {
+            color: #cea861;
+            border-bottom: 2px solid #cea861;
+            background-color: #fff;
+        }
+
+        #tab p {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 50px;
+            color: #f00;
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bolder;
+            background-color: rgba(0, 0, 0, .4);
+            cursor: pointer;
+        }
+
+        #tab p:hover {
+            background-color: rgba(0, 0, 0, .8);
+        }
+
+        #tab p.prev {
+            left: 0;
+        }
+
+        #tab p.next {
+            right: 0;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="img">
+            <ul>
+                <li><a href="#"><img src="./images/5.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/1.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/2.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/3.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/4.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/5.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/1.jpg" alt="" /></a></li>
+            </ul>
+        </div>
+        <div id="btn">
+            <ol>
+                <li class="active">幸运六月</li>
+                <li>死兆星2019</li>
+                <li>限时获取至臻点</li>
+                <li>6月18日LPL赛程</li>
+                <li>星魂集结集卡</li>
+            </ol>
+        </div>
+        <div id="tab">
+            <p class="prev">&lt;</p>
+            <p class="next">&gt;</p>
+        </div>
+    </div>
+</body>
+<script>
+    let $wrapper = $('#wrapper');
+        $oImg = $('#img'),
+        $oBtn = $('#btn'),
+        $oTab = $('#tab'),
+        $btnLi = $oBtn.find('li'),
+        $aP = $oTab.find('p'),
+        $oUl = $oImg.find('ul'),
+        $index = 1,
+        $btnIndex = 0,
+        oldTime = new Date(),
+        timer = null;
+    //点击上下张
+    $aP.click(function () {
+        if (new Date() - oldTime > 1000) {
+            oldTime = new Date();
+            if ($(this).index()) {
+                //点击下一张
+                prev_next(true);
+            } else {
+                //上一张
+                prev_next(false);
+            }
+        } else {
+            alert('亲，点击间隔不能小于一秒钟，人家可是有底线的呦');
+        }
+
+    });
+    //点击btn
+    $btnLi.click(function () {
+        $index = $(this).index() + 1;
+        commonStyle($index);
+    });
+    //自动轮播
+    autoPlay();
+    $wrapper.hover(function(){
+        clearInterval(timer);
+    },function(){
+        autoPlay();
+    });
+    function autoPlay() {
+        timer = setInterval(function () {
+            prev_next(true)
+        },3000);
+    }
+    function prev_next(isNext) {
+        if (isNext) {
+            $index++;
+            if ($index >= 7) {
+                $oUl.css('left', -784)
+                $index = 2;
+            }
+            commonStyle($index);
+        } else {
+            $index--;
+            if ($index <= -1) {
+                $oUl.css('left', -5 * 784)
+                $index = 4;
+            }
+            commonStyle($index);
+        }
+    }
+    function commonStyle($index) {
+        $oUl.animate({
+            left: -$index * 784
+        }, 1000);
+        if ($index >= 6) {
+            $btnIndex = 0;
+        } else {
+            $btnIndex = $index - 1;
+        }
+        $btnLi.eq($btnIndex).addClass('active').siblings().removeClass('active');
+    }
+</script>
+
+</html>

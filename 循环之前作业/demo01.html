@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入上万不是梦</title>
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+       div{
+           width:300px;
+           height:100px;
+           background-color:#ccc;
+           text-align:center;
+           line-height:100px;
+           color:green;
+           margin:10px auto;
+           cursor: pointer;
+       }
+    </style>
+</head>
+<body>
+     <div id="box1">box1</div> 
+     <div id="box2">box2</div> 
+</body>
+<script>
+     let oBox1 = document.getElementById("box1");
+     let oBox2 = document.getElementById("box2");
+     oBox1.onmouseenter = function(){
+         oBox2.style.backgroundColor = "#f60";
+     }
+     oBox2.onmouseenter = function(){
+         oBox1.style.backgroundColor = "#f60";
+     }
+     oBox1.onmouseleave = function(){
+         oBox2.style.backgroundColor = "#ccc";
+     }
+     oBox2.onmouseleave = function(){
+         oBox1.style.backgroundColor = "#ccc";
+     }
+</script>
+</html>

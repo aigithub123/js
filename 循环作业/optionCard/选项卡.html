@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学好js，月入上万不是梦</title>
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+       ul,ol,li{
+           list-style:none;
+       }
+       #wrapper{
+           position:relative;
+           width:784px;
+           height:364px;
+           margin:50px auto;
+           overflow: hidden;
+       }
+       #img{
+           width:100%;
+           height:324px;
+       }
+       #img ul{
+          position:absolute;
+          left:-784px;
+          top:0;
+          width: 1000%;
+          height:100%;
+       }
+       #img ul li{
+           float:left;
+       }
+       #img img{
+           width:784px;
+           height:324px;
+           user-select: none;
+       }
+       #btn,#btn ol{
+         width:100%;
+         height:40px;
+       }
+       #btn{
+           position:absolute;
+           bottom:0;
+           left:0;
+       }
+       #btn ol li{
+           float:left;
+           width:20%;
+           height:100%;
+           text-align:center;
+           line-height:40px;
+           background-color:#e2e2e2;
+           box-sizing: border-box;
+           cursor: pointer;
+       }
+       #btn ol li.active{
+           color:#cea861;
+           border-bottom:2px solid #cea861;
+           background-color:#fff;
+       }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="img">
+            <ul>
+                <li><a href="#"><img src="./images/5.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="./images/1.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="./images/2.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="./images/3.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="./images/4.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="./images/5.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="./images/1.jpg" alt="" /></a></li>
+            </ul>
+        </div>
+        <div id="btn">
+            <ol>
+                <li class="active">幸运六月</li>
+                <li>死兆星2019</li>
+                <li>限时获取至臻点</li>
+                <li>6月18日LPL赛程</li>
+                <li>星魂集结集卡</li>
+            </ol>
+        </div>
+    </div>
+</body>
+<script>
+      let $tabLi = $("#btn ol li"),
+          $img = $("#img ul"),
+          index = 1,
+          tabIndex = 0,
+          wrapperW = $("#wrapper").width(),
+          timer = null;
+     $tabLi.click(function(){
+        $img.css("left",-($(this).index()+1)*wrapperW)
+        index = $(this).index()+1
+         $(this).addClass("active").siblings().removeClass("active")
+     });
+    timer = setInterval(auto,4000);
+    function auto(){
+      index++;
+      if(index>=7){
+        $img.css("left",-1*wrapperW)
+        index = 2;
+      }
+      $img.animate({
+          left:-index*wrapperW
+      },1000)
+      tabIndex = index - 1;
+      if(index === 6){
+          tabIndex = 0;
+      }
+      $tabLi.eq(tabIndex).addClass("active").siblings().removeClass("active");
+    }
+</script>
+</html>

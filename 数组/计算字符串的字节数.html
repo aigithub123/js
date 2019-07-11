@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   //功能需求：封装函数 输出指定字符串的长度：
+   function byteLen(str){
+      let len = 0;
+     for(let i = 0;i<str.length;i++){
+         if(str.charCodeAt(i)<=255){
+             //说明是英文
+             len++;
+         }else{
+             //说明是中文
+             len+=2;
+         }
+     }
+     return len;
+   }
+   byteLen('heaven');  	//6
+       
+ </script>
+</html>
